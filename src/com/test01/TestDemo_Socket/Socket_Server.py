@@ -1,8 +1,8 @@
-
+# -*- coding: utf-8 -*-
 import socket
 import time
 
-# create a socket object
+# 创建一个UDP连接
 serversocket = socket.socket(
             socket.AF_INET, socket.SOCK_STREAM)
 
@@ -19,10 +19,12 @@ serversocket.listen(5)
 
 while True:
     print host
-    # establish a connection
+    # 接收数据
     clientsocket,addr = serversocket.accept()
 
     print("Got a connection from %s" % str(addr))
     currentTime = time.ctime(time.time()) + "\r\n"
+    #发送数据
     clientsocket.send(currentTime.encode('ascii'))
+    #关闭客户端连接
     clientsocket.close()
