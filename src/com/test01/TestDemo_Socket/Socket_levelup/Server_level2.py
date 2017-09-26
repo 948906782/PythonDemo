@@ -20,6 +20,8 @@ class ServerDemo():
             print ('Get a connection from %s' %str(addr))
             currentTime = time.ctime(time.time()) + "\r\n"
             client.send(currentTime.encode('ascii'))
+            msg=client.recv(1024)
+            print('Getmessage:%s' %str(msg).encode('ascii'))
             client.close()
 
 if __name__=="__main__":

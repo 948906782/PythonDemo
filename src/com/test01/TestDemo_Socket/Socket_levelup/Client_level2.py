@@ -12,7 +12,11 @@ class ClientDemo():
         self.__getresponse()
 
     def __getresponse(self):
+        sendmsg='A message'
+        # 接收信息
         meg=self.client.recv(1024)
+        # 发送信息
+        self.client.send(sendmsg.encode('ascii'))
         self.client.close()
         print('now : %s' %str(meg).encode('ascii'))
 

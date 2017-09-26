@@ -5,7 +5,7 @@ import pymysql
 class JdbcDemo():
 
     def __init__(self):
-        print 'init.....'
+        print ('init.....')
 
     def NormalTest(self):
         try:
@@ -16,5 +16,9 @@ class JdbcDemo():
             for d in data:
                 print("id:",d[0],"name",d[1])
 
-        except Exception : print 'ERROR'
+        except Exception : print ('ERROR')
+
+if __name__=="__main__":
+    conn=JdbcDemo()
+    conn.NormalTest()
 
