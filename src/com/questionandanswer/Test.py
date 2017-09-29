@@ -22,6 +22,11 @@ print(fib(10))
 # for i in fib(10):
 #     print(i)
 
+import os
+print(os.name)
+# print(os.uname())#注意uname()函数在Windows上不提供
+print(os.path)
+from multiprocessing import process
 
 
 
