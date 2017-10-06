@@ -18,7 +18,7 @@ serversocket.bind((host, port))
 serversocket.listen(5)
 
 while True:
-    print host
+    print (host)
     # 接收数据
     clientsocket,addr = serversocket.accept()
 

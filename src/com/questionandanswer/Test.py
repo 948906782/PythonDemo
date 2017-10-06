@@ -26,7 +26,11 @@ import os
 print(os.name)
 # print(os.uname())#注意uname()函数在Windows上不提供
 print(os.path)
-from multiprocessing import process
+from PIL import Image
+rm=Image.open('j:/a.jpg')
+w,h=rm.size
+print (w,h)
+
 
 
 
