@@ -145,7 +145,7 @@ class RequestHandler(object):
             return r
         except ValueError as e:
             return dict(error=e.error,data=e.data,message=e.message)
-
+import asyncio,logging
 def add_static(app):
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
     app.router.add_static('/static/', path)
