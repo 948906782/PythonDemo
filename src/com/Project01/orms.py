@@ -121,7 +121,7 @@ class ModelMetaclass(type):
         escaped_fields=list(map(lambda f:'`%s`'%f,fields))
         attrs['__mappings__']=mappings
         attrs['__table__']=tableName
-        attrs['--primary_key__']=primaryKey
+        attrs['__primary_key__']=primaryKey
         attrs['__fields__']=fields
         attrs['__select__']='select `%s`, %s from `%s`' % (primaryKey, ', '.join(escaped_fields), tableName)
         attrs['__insert__']= 'insert into `%s` (%s, `%s`) values (%s)' % (tableName, ', '.join(escaped_fields), primaryKey, create_args_string(len(escaped_fields) + 1))
@@ -195,8 +195,9 @@ class Model(dict,metaclass=ModelMetaclass):
         return rs[0]['_num_']
 
     @classmethod
-    async def find(cls,pk):
-        rs=await select('%s where `%s`=?'%(cls.__select__,cls.__primary_key__),[pk],1)
+    @asyncio.coroutine
+    def find(cls,pk):
+        rs=yield from select('%s where `%s`=?'%(cls.__select__,cls.__primary_key__),[pk],1)
         if len(rs)==0:
             return None
         return cls(**rs[0])

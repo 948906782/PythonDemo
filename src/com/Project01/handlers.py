@@ -15,8 +15,8 @@ def index(request):
 
 @get('/api/users')
 def api_get_users():
-    users=yield from User.findAll(orderBy='create_at desc')
+    users=yield from User.find(1)
+    logging.info('api using...')
     for u in users:
-        u.name='******'
         return dict(users=users)
 
